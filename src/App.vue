@@ -4,6 +4,7 @@ import { store } from './data/store.js';
 
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
+import AppLoader from './components/AppLoader.vue';
 
 
 export default {
@@ -11,11 +12,16 @@ export default {
     return {
       store,
       apiUri: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
+      isLoading: false,
     }   
+
   },
       
   methods: {
     fetchGameCards(endpoint) {
+
+      this.isLoading = true;
+
       axios.get(endpoint)
       .then((response) => {
         console.log(response.data.data)
@@ -28,7 +34,17 @@ export default {
           }
         })
         store.gameCards = gameCardData;
-      });
+
+      })
+
+      .catch((error) => {
+        console.error(error)
+        store.gameCards = [];
+      })
+
+      .finally (() => {
+        this.isLoading = false;
+      })
     }
   },
 
@@ -36,13 +52,19 @@ export default {
       this.fetchGameCards(this.apiUri)
   },
 
-  components: { AppHeader, AppMain }
+  components: { AppHeader, AppMain, AppLoader}
 
 }
 </script>
 
 <template>
+  
   <AppHeader></AppHeader>
+  <AppLoader
+  v-if="isLoading"
+  loadingText = "Loading Game Cards"
+  
+  ></AppLoader>
   
   <AppMain></AppMain>
 </template>
