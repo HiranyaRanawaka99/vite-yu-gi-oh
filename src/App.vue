@@ -12,7 +12,8 @@ export default {
   data() {
     return {
       store,
-      apiUri: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
+      // apiUri: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
+      apiUri: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
       apiUriArchetypes: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
       isLoading: false,
     }   
@@ -50,11 +51,6 @@ export default {
       })
     },
 
-    handleSearch(selectedOption) {
-  
-      console.log(selectedOption)
-    },
-
     fetchArchetypes(api) {
       axios
       .get(api)
@@ -64,8 +60,12 @@ export default {
         })
         store.archetypes = archetypesData
       })
-      
-    }
+    },
+
+    handleSearch(selectedOption) {
+      const fullApiUri = `${this.apiUri}&archetype=${selectedOption}`
+      this.fetchGameCards(fullApiUri)
+    },
   },
    
   
@@ -92,7 +92,7 @@ export default {
   <Select 
   :archetypes = "store.archetypes"
   cardTypeSelect = "Choose archetype"
-  @selected-option = "handleSearch(selectedOption)"
+  @selected-option = "handleSearch"
   > </Select>  
 
 
