@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       store,
-      apiUri: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
+      apiUri: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
       apiUriArchetypes: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
       isLoading: false,
     }   
@@ -49,7 +49,12 @@ export default {
         this.isLoading = false;
       })
     },
-    
+
+    handleSearch(selectedOption) {
+  
+      console.log(selectedOption)
+    },
+
     fetchArchetypes(api) {
       axios
       .get(api)
@@ -59,17 +64,19 @@ export default {
         })
         store.archetypes = archetypesData
       })
+      
     }
   },
-
+   
+  
   created() {
-      this.fetchGameCards(this.apiUri);
-      this.fetchArchetypes(this.apiUriArchetypes);
+    this.fetchGameCards(this.apiUri);
+    this.fetchArchetypes(this.apiUriArchetypes);
   },
-
+  
   components: { AppHeader, AppMain, AppLoader, Select}
-
-  }
+  
+}
 
 </script>
 
@@ -85,6 +92,7 @@ export default {
   <Select 
   :archetypes = "store.archetypes"
   cardTypeSelect = "Choose archetype"
+  @selected-option = "handleSearch(selectedOption)"
   > </Select>  
 
 

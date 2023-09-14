@@ -16,6 +16,3 @@ https://db.ygoprodeck.com/api/v7/archetypes.php
 
 ## Milestone 2:
 Quando l'utente seleziona un valore dalla lista, viene effettuata una chiamata alle API con l'archetipo selezionato
-
-## Milestone 2:
-Quando l'utente seleziona un valore dalla lista, viene effettuata una chiamata alle API con l'archetipo selezionato

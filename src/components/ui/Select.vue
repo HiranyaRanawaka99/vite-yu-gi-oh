@@ -3,15 +3,16 @@
 export default {
     data() {
         return {
-            
+            selectedOption: '',
         }
     },
 
     props: {
         archetypes: Array,
         cardTypeSelect: String,
+    },
 
-    }
+    emits: ['selected-option'],
 }
 
 </script>
@@ -20,6 +21,7 @@ export default {
 <template>
     <div class="container select">
     <select 
+        @change = "$emit('selected-option', selectedOption)"
         class="form-select" 
         aria-label="Default select example">
         <option selected> {{ cardTypeSelect || 'Choose an option' }}</option>
