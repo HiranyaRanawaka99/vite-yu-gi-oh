@@ -2,7 +2,7 @@
     export default {
         data() {
             return {
-                title: 'Yu Gi Oh Api'
+                title: 'Yu-Gi-Oh Api'
             }
         }
     }
@@ -10,15 +10,18 @@
 
 
 <template>
-    <div class="p-5">
-    <h1>{{ title }}</h1>
-</div>
+    <div class="mb-4">
+        <h1>{{ title }}</h1>
+    </div>
 </template>
 
 <style lang="scss" scoped>
     h1 {
         text-align: center;
-        color: #6c0b0b;
         font-weight: 700;
+        padding: 1rem 0;
+
+        background-color: white;
+        color: black;
     }
 </style>

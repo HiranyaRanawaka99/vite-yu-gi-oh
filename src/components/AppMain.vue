@@ -13,7 +13,7 @@ export default {
 
 <template>
 
-  <div class="main container">
+  <div class="container main mt-5">
 
     <CardList></CardList>
 
@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .main.container {
-  background-color: antiquewhite;
+  background-color: white;
 }
 
 </style>
